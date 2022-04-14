@@ -15,7 +15,7 @@ inherit allarch deploy
 
 do_install() {
 	install -d ${D}/system/etc/firmware/
-	install -m 0644 ${S}/firmware/broadcom/AW-NB197/bt/BCM4343A1_001.002.009.1008.1024.hcd
+	install -m 0644 ${S}/firmware/broadcom/AW-NB197/bt/BCM4343A1_001.002.009.1008.1024.hcd \
 		${D}/system/etc/firmware/bcm43438a1.hcd
 	install -m 0644 ${S}/firmware/broadcom/AP6212A1/wifi/* \
 		-t ${D}/system/etc/firmware/

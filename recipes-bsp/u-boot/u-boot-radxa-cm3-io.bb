@@ -18,21 +18,11 @@ SRC_URI = " \
 
 SRCREV = "693c4cd017e57a6af8e471494be5e8780c041b08"
 
-do_compile () {
-
-}
-
 do_compile_append () {
-
+	oe_runmake -C ${S} O=${B}/${config} BL31=${DEPLOY_DIR_IMAGE}/radxa-binary/bl31.elf spl/u-boot-spl.bin u-boot.dtb u-boot.itb
+	./tools/mkimage -n rk3568 -T rksd -d ${DEPLOY_DIR_IMAGE}/radxa-binary/ddr.bin:spl/u-boot-spl.bin ${DEPLOY_DIR_IMAGE}/idbloader.img
 }
 
 do_deploy_append() {
-	if [ -f "${WORKDIR}/${MACHINE}/u-boot.itb" ]; then
-		install -D -m 644 ${WORKDIR}/${MACHINE}/u-boot.itb ${DEPLOYDIR}/
-	fi
-	if [ -f "${WORKDIR}/${MACHINE}/idbloader.img" ]; then
-		install -D -m 644 ${WORKDIR}/${MACHINE}/idbloader.img ${DEPLOYDIR}/
-	fi
+	install -D -m 644 ${B}/u-boot.itb ${DEPLOYDIR}/
 }
-
-addtask compile

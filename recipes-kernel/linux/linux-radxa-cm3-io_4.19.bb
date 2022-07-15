@@ -5,7 +5,7 @@ inherit python3native
 require recipes-kernel/linux/linux-yocto.inc
 
 # We need mkimage for the overlays
-DEPENDS += "openssl-native u-boot-mkimage-radxa-native python-native"
+DEPENDS += "openssl-native u-boot-mkimage-radxa-native"
 
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
